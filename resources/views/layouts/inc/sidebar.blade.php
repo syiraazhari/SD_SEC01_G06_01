@@ -65,7 +65,7 @@
 
       <li>
         <div class="iocn-link">
-          <a href="#">
+          <a href="{{ url('staff') }}">
             <i class='bx bx-plug' ></i>
             <span class="link_name">Staff</span>
           </a>
@@ -74,20 +74,20 @@
 
         <ul class="sub-menu">
           <li>
-            <a class="link_name" href="#">
+            <a class="link_name" href="{{ url('staff') }}">
               Staff
             </a>
           </li>
 
           <li>
-            <a href="#">
+            <a href="{{ url('add-staff') }}">
               Add Staff
             </a>
           </li>
         </ul>
       </li>
 
-      <li>
+      {{-- <li>
         <a href="#">
           <i class='bx bx-pie-chart-alt-2' ></i>
           <span class="link_name">Analytics</span>
@@ -141,7 +141,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
 
       <li>
         <a href="#">

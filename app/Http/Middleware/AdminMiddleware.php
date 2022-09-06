@@ -23,6 +23,9 @@ class AdminMiddleware
             {
                 return $next($request);
             }
+            elseif (Auth::user()->role_as == '2') {
+                return $next($request);
+            }
             else
             {
                 return redirect('/home')->with('status','Access Denied! sorry but you are not authorized to make this request');

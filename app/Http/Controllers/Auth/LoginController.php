@@ -34,8 +34,7 @@ class LoginController extends Controller
         {
             return redirect('dashboard')->with('status','Welcome to your dashboard');
         }
-        elseif (Auth::user()->role_as == '2') //2 = Staff Login
-        {
+        elseif (Auth::user()->role_as == '2') {
             return redirect('dashboard')->with('status','Welcome to your dashboard');
         }
         elseif(Auth::user()->role_as == '0') // Normal or Default User Login
