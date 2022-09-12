@@ -17,6 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->bigInteger('phone');
+            $table->string('address1');
+            $table->string('address2');
+            $table->string('province');
+            $table->string('city');
+            $table->bigInteger('zipcode');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('role_as')->default('0');

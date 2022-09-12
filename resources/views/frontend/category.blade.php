@@ -13,7 +13,7 @@
                     <div class="row"></div>
                         @foreach ($category as $cate)
                             <div class="col-md-3 mb-3">
-                                <a href="{{ url('view-category/'.$cate->slug) }}">
+                                <a href="{{ url('category/'.$cate->slug) }}">
                                     <div class="card">
                                         <img src="{{ asset('assets/uploads/category/'.$cate->image) }}" alt="Category Image">
                                         <div class="card-body">

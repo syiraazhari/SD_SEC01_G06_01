@@ -4,7 +4,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h1>Staff</h1>
+            <h1>Users</h1>
             <hr>
         </div>
         <div class="card-body">
@@ -26,8 +26,8 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->role_as }}</td>
                             <td>
-                                <a href="{{ url('edit-staff/'.$item->id) }}" class="btn btn-primary">Edit</a>
-                                <a href="{{ url('delete-staff/'.$item->id) }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ url('edit-users/'.$item->id) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ url('delete-users/'.$item->id) }}" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

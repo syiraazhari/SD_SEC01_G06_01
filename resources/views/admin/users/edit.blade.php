@@ -4,11 +4,11 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h2>Edit / Update Staff</h2>
+            <h2>Edit / Update Users</h2>
             <hr>
         </div>
         <div class="card-body">
-            <form action="{{ url('update-staff/'.$users->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('update-users/'.$users->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">

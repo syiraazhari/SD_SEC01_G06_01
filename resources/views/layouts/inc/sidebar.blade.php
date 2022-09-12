@@ -3,8 +3,10 @@
 
 <div class="sidebar">
   <div class="logo-details">
-    <i class='bx bxl-c-plus-plus'></i>
-      <span class="logo_name">ClassAct Tech</span>
+    <a href="/dashboard">
+      <i class='bx bxl-c-plus-plus'></i>
+        <span class="logo_name">ClassAct Tech</span>
+    </a>
   </div>
 
     <ul class="nav-links">
@@ -64,6 +66,20 @@
       </li>
 
       <li>
+        <a href="{{ url('users') }}">
+          <i class='bx bx-plug' ></i>
+          <span class="link_name">Users</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li>
+            <a class="link_name" href="{{ url('users') }}">
+              Users
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      {{-- <li>
         <div class="iocn-link">
           <a href="{{ url('staff') }}">
             <i class='bx bx-plug' ></i>
@@ -78,14 +94,8 @@
               Staff
             </a>
           </li>
-
-          <li>
-            <a href="{{ url('add-staff') }}">
-              Add Staff
-            </a>
-          </li>
         </ul>
-      </li>
+      </li> --}}
 
       {{-- <li>
         <a href="#">
@@ -160,7 +170,7 @@
       <li>
         <div class="profile-details">
           <div class="profile-content">
-            <img src="{{ asset('assets/images/avatar.png') }}" alt="profileImg">
+            <img src="{{ asset('assets/images/profile/avatar.png') }}" alt="profileImg">
           </div>
 
           <div class="name-job">

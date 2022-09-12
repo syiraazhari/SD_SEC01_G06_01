@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Staff;
+namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,13 +8,13 @@ use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class StaffController extends Controller
+class UsersController extends Controller
 {
 
     public function index()
     {
         $users = User::all();
-        return view('admin.staff.index', compact('users'));
+        return view('admin.users.index', compact('users'));
         
         // $users = Staff::all();
         // return view('admin.staff.index', compact('users'));
@@ -25,14 +25,14 @@ class StaffController extends Controller
     public function add()
     {
         $users = User::all();
-        return view('admin.staff.add');
+        return view('admin.users.add');
     
     }
 
     public function edit($id)
     {
         $users = User::find($id);
-        return view('admin.staff.edit', compact('users'));
+        return view('admin.users.edit', compact('users'));
 
         
     }
@@ -44,7 +44,7 @@ class StaffController extends Controller
         $users->email = $request->input('email');
         $users->role_as = $request->input('role_as');
         $users->update();
-        return redirect('staff')->with('status', "Staff Updated Successfully");
+        return redirect('users')->with('status', "Users Updated Successfully");
         
     }
 
@@ -52,7 +52,7 @@ class StaffController extends Controller
     {
         $users = User::find($id);
         $users->delete();
-        return redirect('staff')->with('status', "Staff Deleted Successfully");
+        return redirect('users')->with('status', "Users Deleted Successfully");
     
     }
 

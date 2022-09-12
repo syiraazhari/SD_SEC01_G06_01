@@ -28,12 +28,12 @@ class AdminMiddleware
             }
             else
             {
-                return redirect('/home')->with('status','Access Denied! sorry but you are not authorized to make this request');
+                return redirect('/')->with('status','Access Denied! sorry but you are not authorized to make this request');
             }
         }
         else
         {
-            return redirect('/home')->with('status','Please Login First');
+            return redirect('/')->with('status','Please Login First');
         }
     }
 }

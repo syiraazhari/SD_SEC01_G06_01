@@ -20,9 +20,20 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'address1',
+        'address2',
+        'city',
+        'province',
+        'zipcode',
         'password',
         'role_as',
     ];
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'name', 'code');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +53,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 }
