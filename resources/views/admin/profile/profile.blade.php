@@ -1,4 +1,4 @@
-{{-- @extends('layouts.front')
+@extends('layouts.front')
 
 @section('title')
     Profile Info
@@ -21,7 +21,7 @@
                         Update Profile
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('settings/update-profile'.$users->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('update-admin-profile'.$users->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mt-2 form-group">
@@ -126,4 +126,4 @@
     </div>
 </div> --}}
 
-@endsection --}}
+@endsection

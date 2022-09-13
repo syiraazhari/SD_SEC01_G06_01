@@ -154,14 +154,14 @@
       </li> --}}
 
       <li>
-        <a href="#">
+        <a href="{{ url('admin-profile') }}">
           <i class='bx bx-cog' ></i>
-          <span class="link_name">Setting</span>
+          <span class="link_name">Profile</span>
         </a>
         <ul class="sub-menu blank">
           <li>
             <a class="link_name" href="#">
-              Setting
+              Profile
             </a>
           </li>
         </ul>

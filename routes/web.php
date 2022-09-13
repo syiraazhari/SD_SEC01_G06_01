@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -37,9 +38,13 @@ Route::put('update-profile/{id}', [ProfileController::class, 'update']);
 
 
 
-Auth::routes();
+
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/change-password', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('update-password');
+
 
 // Admin
 Route::middleware(['auth', 'isAdmin']) ->group(function () {
@@ -64,6 +69,9 @@ Route::middleware(['auth', 'isAdmin']) ->group(function () {
     Route::get('edit-users/{id}', [UsersController::class, 'edit' ]);
     Route::put('update-users/{id}', [UsersController::class, 'update' ]);
     Route::get('delete-users/{id}', [UsersController::class, 'destroy' ]);
+
+    Route::get('admin-profile', [AdminProfileController::class, 'index']);
+    Route::put('update-admin-profile/{id}', [AdminProfileController::class, 'update']);
 
     
     
