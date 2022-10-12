@@ -1,13 +1,33 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Livewire\Admin\AdminAddCategoryComponent;
+use App\Http\Livewire\Admin\AdminAddHomeSliderComponent;
+use App\Http\Livewire\Admin\AdminAddProductComponent;
+use App\Http\Livewire\Admin\AdminCategoryComponent;
+use App\Http\Livewire\Admin\AdminChangePasswordComponent;
+use App\Http\Livewire\Admin\AdminDashboardComponent;
+use App\Http\Livewire\Admin\AdminEditCategoryComponent;
+use App\Http\Livewire\Admin\AdminEditHomeSliderComponent;
+use App\Http\Livewire\Admin\AdminEditProductComponent;
+use App\Http\Livewire\Admin\AdminEditProfileComponent;
+use App\Http\Livewire\Admin\AdminHomeCategoryComponent;
+use App\Http\Livewire\Admin\AdminHomeSliderComponent;
+use App\Http\Livewire\Admin\AdminPanelComponent;
+use App\Http\Livewire\Admin\AdminProductComponent;
+use App\Http\Livewire\Admin\AdminProfileComponent;
+use App\Http\Livewire\Admin\AdminSaleComponent;
+use App\Http\Livewire\CartComponent;
+use App\Http\Livewire\CategoryComponent;
+use App\Http\Livewire\CheckoutComponent;
+use App\Http\Livewire\DetailsComponent;
+use App\Http\Livewire\HomeComponent;
+use App\Http\Livewire\SearchComponent;
+use App\Http\Livewire\ShopComponent;
+use App\Http\Livewire\User\UserChangePasswordComponent;
+use App\Http\Livewire\User\UserDashboardComponent;
+use App\Http\Livewire\User\UserEditProfileComponent;
+use App\Http\Livewire\User\UserProfileComponent;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Frontend\FrontController;
-use App\Http\Controllers\Frontend\ProfileController;
-use App\Http\Controllers\Users\UsersController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,55 +44,54 @@ use Illuminate\Support\Facades\Auth;
 //     return view('welcome');
 // });
 
-// Homepage
-Route::get('/', [FrontController::class, 'index']);
+Route::get('/',HomeComponent::class);
 
-// Category
-Route::get('category', [FrontController::class, 'category']);
-Route::get('category/{slug}', [FrontController::class, 'viewcategory']);
-Route::get('category/{cate_slug}/{prod_slug}', [FrontController::class, 'productview']);
+Route::get('/shop',ShopComponent::class);
 
-// User Profile
-Route::get('settings', [ProfileController::class, 'index']);
-Route::put('update-profile/{id}', [ProfileController::class, 'update']);
+Route::get('/cart',CartComponent::class)->name('product.cart');
 
+Route::get('/checkout',CheckoutComponent::class);
 
+Route::get('/product/{slug}',DetailsComponent::class)->name('product.details');
 
+Route::get('/product-category/{category_slug}',CategoryComponent::class)->name('product.category');
 
-Auth::routes(['verify' => true]);
+Route::get('/search',SearchComponent::class)->name('product.search');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/change-password', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
-Route::post('/change-password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('update-password');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 
-// Admin
-Route::middleware(['auth', 'isAdmin']) ->group(function () {
+//For User or Customer
+Route::middleware(['auth:sanctum','verified'])->group(function(){
+    Route::get('/user/dashboard',UserDashboardComponent::class)->name('user.dashboard');
+    Route::get('/user/profile', UserProfileComponent::class)->name('user.profile');
+    Route::get('/user/profile/edit', UserEditProfileComponent::class)->name('user.editprofile');
+    Route::get('/user/change-password', UserChangePasswordComponent::class)->name('user.changepassword');
+});
 
-    Route::get('/dashboard', 'App\Http\Controllers\Admin\FrontendController@index');
+//For Admin
+Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){ 
+    Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
+    // Route::get('/adminpanel',AdminPanelComponent::class)->name('admin.panel');
 
-    Route::get('categories', 'App\Http\Controllers\Admin\CategoryController@index');
-    Route::get('add-category', 'App\Http\Controllers\Admin\CategoryController@add');
-    Route::post('insert-category', 'App\Http\Controllers\Admin\CategoryController@insert');
-    Route::get('edit-category/{id}',[CategoryController::class , 'edit']);
-    Route::put('update-category/{id}', [CategoryController::class, 'update']);
-    Route::get('delete-category/{id}', [CategoryController::class, 'destroy']);
+    Route::get('/admin/profile', AdminProfileComponent::class)->name('admin.profile');
+    Route::get('/admin/profile/edit', AdminEditProfileComponent::class)->name('admin.editprofile');
+    Route::get('/admin/change-password', AdminChangePasswordComponent::class)->name('admin.changepassword');
+
+    Route::get('/admin/categories',AdminCategoryComponent::class)->name('admin.categories');   
+    Route::get('/admin/category/add',AdminAddCategoryComponent::class)->name('admin.addcategory');
+    Route::get('/admin/category/edit/{category_slug}',AdminEditCategoryComponent::class)->name('admin.editcategory');
+    Route::get('/admin/products',AdminProductComponent::class)->name('admin.products');        
+    Route::get('/admin/product/add',AdminAddProductComponent::class)->name('admin.addproduct');    
+    Route::get('/admin/product/edit/{product_slug}',AdminEditProductComponent::class)->name('admin.editproduct');
     
-    Route::get('products', [ProductController::class, 'index' ]);
-    Route::get('add-products', [ProductController::class, 'add' ]);
-    Route::post('insert-products', [ProductController::class, 'insert']);
-    Route::get('edit-product/{id}', [ProductController::class, 'edit']);
-    Route::put('update-products/{id}', [ProductController::class, 'update']);
-    Route::get('delete-product/{id}', [ProductController::class, 'destroy']);
-
-    Route::get('users', [UsersController::class, 'index' ]);
-    Route::get('edit-users/{id}', [UsersController::class, 'edit' ]);
-    Route::put('update-users/{id}', [UsersController::class, 'update' ]);
-    Route::get('delete-users/{id}', [UsersController::class, 'destroy' ]);
-
-    Route::get('admin-profile', [AdminProfileController::class, 'index']);
-    Route::put('update-admin-profile/{id}', [AdminProfileController::class, 'update']);
-
+    Route::get('/admin/slider',AdminHomeSliderComponent::class)->name('admin.homeslider');
+    Route::get('/admin/slider/add',AdminAddHomeSliderComponent::class)->name('admin.addhomeslider');
+    Route::get('/admin/slider/edit/{slide_id}',AdminEditHomeSliderComponent::class)->name('admin.edithomeslider');
     
+    Route::get('/admin/home-categories',AdminHomeCategoryComponent::class)->name('admin.homecategories');
+    Route::get('/admin/sale',AdminSaleComponent::class)->name('admin.sale');
     
 });

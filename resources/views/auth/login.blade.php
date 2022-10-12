@@ -1,106 +1,100 @@
-@extends('layouts.app')
+{{-- <x-guest-layout>
+    <x-jet-authentication-card>
+        <x-slot name="logo">
+            <x-jet-authentication-card-logo />
+        </x-slot>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="form login">
-            <div class="form-content">
-                <header>{{ __('Login') }}</header>
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                        <div class="field input-field">
-                            <input placeholder="Email Address" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        <x-jet-validation-errors class="mb-4" />
 
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+        @if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('status') }}
+            </div>
+        @endif
 
-                        <div class="field input-field">
-                            <input placeholder="Enter your password" required id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                            <i class='bx bx-hide eye-icon'></i>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-link">
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                            @endif
-                        </div>
-
-                        <div class="field button-field">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Login') }}
-                            </button>
-                        </div>
-                    </form>
-
-                <div class="form-link">
-                    <span>Don't have an account? 
-                        <a href="{{ route('register') }}" class="link signup-link">
-                            {{ __('Register') }}
-                        </a>
-                    </span>
-                </div>
+            <div>
+                <x-jet-label for="email" value="{{ __('Email') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
 
-            <div class="line"></div>
-
-            <div class="media-options">
-                <a href="#" class="field facebook">
-                    <i class='bx bxl-facebook facebook-icon'></i>
-                    <span>Login with Facebook</span>
-                </a>
+            <div class="mt-4">
+                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
-            <div class="media-options">
-                <a href="#" class="field google">
-                    <img src="{{ asset('assets/images/google.png') }}" alt="" class="google-img">
-                
-                    <span>Login with Google</span>
-                </a>
+            <div class="block mt-4">
+                <label for="remember_me" class="flex items-center">
+                    <x-jet-checkbox id="remember_me" name="remember" />
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
             </div>
 
-        </div>
-    </div>
-</div>
-@endsection
+            <div class="flex items-center justify-end mt-4">
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
 
-<script>
-    const forms = document.querySelector(".forms"),
-        pwShowHide = document.querySelectorAll(".eye-icon"),
-        links = document.querySelectorAll(".link");
+                <x-jet-button class="ml-4">
+                    {{ __('Log in') }}
+                </x-jet-button>
+            </div>
+        </form>
+    </x-jet-authentication-card>
+</x-guest-layout> --}}
 
-    pwShowHide.forEach(eyeIcon => {
-        eyeIcon.addEventListener("click", () => {
-            let pwFields = eyeIcon.parentElement.parentElement.querySelectorAll(".password");
-    
-            pwFields.forEach(password => {
-                if(password.type === "password"){
-                    password.type = "text";
-                    eyeIcon.classList.replace("bx-hide", "bx-show");
-                    return;
-                }
-                password.type = "password";
-                eyeIcon.classList.replace("bx-show", "bx-hide");
-            })
+<x-guest-layout>
+    <!--main area-->
+	<main id="main" class="main-site left-sidebar">
 
-        })
-    })      
+		<div class="container">
 
-    links.forEach(link => {
-        link.addEventListener("click", e => {
-             e.preventDefault(); //preventing form submit
-            forms.classList.toggle("show-signup");
-        })
-    })
-</script>
+			<div class="wrap-breadcrumb">
+				<ul>
+					<li class="item-link"><a href="/" class="link">home</a></li>
+					<li class="item-link"><span>login</span></li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12 col-md-offset-3">
+					<div class=" main-content-area">
+						<div class="wrap-login-item ">						
+							<div class="login-form form-item form-stl">
+                                <x-jet-validation-errors class="mb-4" />
+								<form name="frm-login" method="POST" action="{{ route('login') }}">
+                                    @csrf
+									<fieldset class="wrap-title">
+										<h3 class="form-title">Log in to your account</h3>										
+									</fieldset>
+									<fieldset class="wrap-input">
+										<label for="frm-login-uname">Email Address:</label>
+										<input type="email" id="frm-login-uname" name="email" placeholder="Type your email address" :value="old('email')" required autofocus>
+									</fieldset>
+									<fieldset class="wrap-input">
+										<label for="frm-login-pass">Password:</label>
+										<input type="password" id="frm-login-pass" name="password" placeholder="************" required autocomplete="current-password">
+									</fieldset>
+									
+									<fieldset class="wrap-input">
+										<label class="remember-field">
+											<input class="frm-input " name="remember" id="rememberme" value="forever" type="checkbox"><span>Remember me</span>
+										</label>
+										<a class="link-function left-position" href="{{ route('password.request') }}" title="Forgotten password?">Forgotten password?</a>
+									</fieldset>
+									<input type="submit" class="btn btn-submit" value="Login" name="submit">
+								</form>
+							</div>												
+						</div>
+					</div><!--end main products area-->		
+				</div>
+			</div><!--end row-->
+
+		</div><!--end container-->
+
+	</main>
+	<!--main area-->
+</x-guest-layout>

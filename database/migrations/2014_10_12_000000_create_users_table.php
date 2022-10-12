@@ -17,16 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->bigInteger('phone');
-            $table->string('address1');
-            $table->string('address2');
-            $table->string('province');
-            $table->string('city');
-            $table->bigInteger('zipcode');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->tinyInteger('role_as')->default('0');
             $table->rememberToken();
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('utype')->default('USR')->comment('ADM for Admin and USR for User or Customer');
             $table->timestamps();
         });
     }
