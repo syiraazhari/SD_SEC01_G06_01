@@ -19,58 +19,12 @@
                 <div class="wrap-shop-control">
                     <h1 class="shop-title">Digital & Electronics</h1>
                     <div class="wrap-right">
-                        <div class="sort-item orderby ">
-                            <select name="orderby" class="use-chosen" wire:model="sorting" >
-                                <option value="default" selected="selected">Default sorting</option>
-                                <option value="date">Sort by newness</option>
-                                <option value="price">Sort by price: low to high</option>
-                                <option value="price-desc">Sort by price: high to low</option>
-                            </select>
-                        </div>
-
-                        <div class="sort-item product-per-page">
-                            <select name="post-per-page" class="use-chosen" wire:model="pagesize">
-                                <option value="12" selected="selected">12 per page</option>
-                                <option value="16">16 per page</option>
-                                <option value="18">18 per page</option>
-                                <option value="21">21 per page</option>
-                                <option value="24">24 per page</option>
-                                <option value="30">30 per page</option>
-                                <option value="32">32 per page</option>
-                            </select>
-                        </div>
-
-                        <div class="change-display-mode">
-                            <a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>
-                            <a href="list.html" class="list-mode display-mode"><i class="fa fa-th-list"></i>List</a>
-                        </div>
 
                     </div>
 
                 </div><!--end wrap shop control-->
 
-                <style>
-                    .product-wish{
-                        position: absolute;
-                        top: 10%;
-                        left: 0;
-                        z-index: 99;
-                        right: 30px;
-                        text-align: right;
-                        padding-top: 0;
-                    }
-                    .product-wish .fa{
-                        color: #cbcbcb;
-                        font-size: 32px;
-
-                    }
-                    .product-wish .fa:hover{
-                        color: #ff7007;
-                    }
-                    .fill-heart{
-                        color: #ff7007 !important;
-                    }
-                </style>
+            
                 <div class="row">
 
                     <ul class="product-list grid-products equal-container">
@@ -89,13 +43,7 @@
                                     <a href="{{ route('product.details',['slug'=>$product->slug]) }}" class="product-name"><span>{{$product->name}}</span></a>
                                     <div class="wrap-price"><span class="product-price">${{$product->regular_price}}</span></div>
                                     <a href="#" class="btn add-to-cart" wire:click.prevent="store({{ $product->id}},'{{ $product->name }}', {{$product->regular_price}})">Add To Cart</a>
-                                    <div class="product-wish">
-                                        @if ($witems->contains($product->id))
-                                            <a href="#" ><i class="fa fa-heart fill-heart"></i></a>
-                                        @else
-                                            <a href="#" wire:click.prevent="addToWishlist({{ $product->id}},'{{ $product->name }}', {{$product->regular_price}})"><i class="fa fa-heart"></i></a>
-                                        @endif
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </li>
@@ -148,43 +96,6 @@
                         </ul>
                     </div>
                 </div><!-- brand widget-->
-
-                <div class="widget mercado-widget filter-widget price-filter">
-                    <h2 class="widget-title">Price </h2>
-                    <span class="text-info">${{  $min_price }} - {{ $max_price }}</span>
-                    <div class="widget-content" style="padding: 10px 5px 40px 5px;">
-                        <div id="slider" wire:ignore></div>
-                    </div>
-                </div><!-- Price-->
-
-                <div class="widget mercado-widget filter-widget">
-                    <h2 class="widget-title">Color</h2>
-                    <div class="widget-content">
-                        <ul class="list-style vertical-list has-count-index">
-                            <li class="list-item"><a class="filter-link " href="#">Red <span>(217)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Yellow <span>(179)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Black <span>(79)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Blue <span>(283)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Grey <span>(116)</span></a></li>
-                            <li class="list-item"><a class="filter-link " href="#">Pink <span>(29)</span></a></li>
-                        </ul>
-                    </div>
-                </div><!-- Color -->
-
-                <div class="widget mercado-widget filter-widget">
-                    <h2 class="widget-title">Size</h2>
-                    <div class="widget-content">
-                        <ul class="list-style inline-round ">
-                            <li class="list-item"><a class="filter-link active" href="#">s</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">M</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">l</a></li>
-                            <li class="list-item"><a class="filter-link " href="#">xl</a></li>
-                        </ul>
-                        <div class="widget-banner">
-                            <figure><img src="{{ asset('assets/images/size-banner-widget.jpg') }}" width="270" height="331" alt=""></figure>
-                        </div>
-                    </div>
-                </div><!-- Size -->
 
                 <div class="widget mercado-widget widget-product">
                     <h2 class="widget-title">Popular Products</h2>
@@ -258,30 +169,6 @@
 
 </main>
 
-
-@push('scripts')
-    <script>
-        var slider = document.getElementById('slider');
-        noUiSlider.create(slider,{
-            start : [1,1000],
-            connect:true,
-            range :{
-                'min' : 1,
-                'max' : 1000
-            },
-            pips:{
-                mode:'steps',
-                stepped:true,
-                density:4
-            }
-        });
-
-        slider.noUiSlider.on('update',function(value){
-            @this.set('min_price',value[0]);
-            @this.set('max_price',value[1]);
-        });
-    </script>
-@endpush
 
 {{-- @stack('scripts')
 <script>

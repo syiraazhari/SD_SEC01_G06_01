@@ -26,6 +26,7 @@ class AdminAddCategoryComponent extends Component
 
     public function storeCategory()
     {
+        
         $this->validate([
             'name' => 'required',
             'slug' => 'required|unique:categories'

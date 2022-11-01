@@ -5,8 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Category;
 use App\Models\Product;
 use Cart;
-use Gloudemans\Shoppingcart\Cart as ShoppingcartCart;
-use Gloudemans\Shoppingcart\Facades\Cart as FacadesCart;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -34,10 +32,6 @@ class ShopComponent extends Component
 
     }
 
-    public function addToWishlist($product_id, $product_name, $product_price)
-    {
-        Cart::instance('wishlist')->add($product_id, $product_name, 1, $product_price)->associate('App\Models\Product');
-    }
     use WithPagination;
     public function render()
     {

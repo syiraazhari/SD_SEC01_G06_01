@@ -24,13 +24,13 @@
                 <div class="wrap-product-detail">
                     <div class="detail-media">
                         <div class="product-gallery">
-                          <ul class="slides">
+                            <ul class="slides">
 
                             <li data-thumb="{{ asset('assets/images/products/') }}/{{ $product->image }}">
                                 <img src="{{ asset('assets/images/products') }}/{{ $product->image }}" alt="{{ $product->name }}" />
                             </li>
 
-                          </ul>
+                            </ul>
                         </div>
                     </div>
                     <div class="detail-info">
@@ -44,7 +44,7 @@
                         </div>
                         <h2 class="product-name">{{ $product->name }}</h2>
                         <div class="short-desc">
-                            {{ $product->short_description }}
+                            {!! $product->short_description !!}
                         </div>
                         @if ($product->sale_price > 0)
                             <div class="wrap-price">
@@ -77,10 +77,6 @@
                         </div>
                         <div class="wrap-butons">
                             <a href="#" class="btn add-to-cart" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Add to Cart</a>
-                            <div class="wrap-btn">
-                                <a href="#" class="btn btn-compare">Add Compare</a>
-                                <a href="#" class="btn btn-wishlist">Add Wishlist</a>
-                            </div>
                         </div>
                     </div>
                     <div class="advance-info">
@@ -91,7 +87,7 @@
                         </div>
                         <div class="tab-contents">
                             <div class="tab-content-item active" id="description">
-                                {{ $product->description }}
+                                {!! $product->description !!}
                             </div>
                             <div class="tab-content-item " id="add_infomation">
                                 <table class="shop_attributes">

@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Sale Date</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="sale-date" placeholder="YYY/MM/DD H:M:5" class="form-control input-md" />
+                                    <input data-format="yyyy/MM/dd hh:mm:ss" type="text" id="sale-date" placeholder="YYY/MM/DD H:M:5" class="form-control input-md" />
                                 </div>
                             </div>
 
@@ -44,8 +44,8 @@
 @push('scripts')
     <script>
         $(function(){
-            $('#sale-date').datetimepicker({
-                format : 'Y-MM-DD h:m:s',
+            $('#sale-date').datepicker({
+                // format : 'yyyy-mm-dd hh:mm:ss',
             })
             .on('dp.hide', function (ev) {
                 var data = $('#sale-date').val();
