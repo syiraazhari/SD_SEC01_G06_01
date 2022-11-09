@@ -8,12 +8,12 @@
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
         "hardevine/shoppingcart": "^3.1",
-        "illuminate/events": "^9.30",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.12",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "livewire/livewire": "^2.5"
+        "livewire/livewire": "^2.5",
+        "cartalyst/stripe-laravel": "^14.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -23,6 +23,7 @@
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
+        
     },
     "autoload": {
         "psr-4": {
