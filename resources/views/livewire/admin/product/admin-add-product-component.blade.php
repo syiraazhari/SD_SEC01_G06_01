@@ -109,6 +109,13 @@
                                 @enderror
                             </div>
                             <div class="col-md-7">
+                                <label for="" class="form-label">Link</label>
+                                <input type="text" class="form-control" placeholder="Link" wire:model="link">
+                                @error('link')
+                                        <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-md-7">
                                 <label for="" class="form-label">Product Image</label>
                                 <input type="file" class="form-control" wire:model="image">
                                 @if ($image)

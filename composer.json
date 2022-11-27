@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "cartalyst/stripe-laravel": "^14.0",
         "guzzlehttp/guzzle": "^7.2",
         "hardevine/shoppingcart": "^3.1",
         "laravel/framework": "^9.19",
@@ -13,7 +14,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
-        "cartalyst/stripe-laravel": "^14.0"
+        "stripe/stripe-php": "^9.9"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

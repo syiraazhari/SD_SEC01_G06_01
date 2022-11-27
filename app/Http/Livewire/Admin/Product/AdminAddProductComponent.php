@@ -24,6 +24,7 @@ class AdminAddProductComponent extends Component
     public $quantity;
     public $image;
     public $category_id;
+    public $link;
 
     public function mount()
     {
@@ -51,6 +52,7 @@ class AdminAddProductComponent extends Component
             'quantity' => 'required|numeric',
             'image' => 'required|mimes:jpeg,png',
             'category_id' => 'required',
+            'link' => 'required',
         ]);
     }
     public function addProduct()
@@ -67,6 +69,7 @@ class AdminAddProductComponent extends Component
             'quantity' => 'required|numeric',
             'image' => 'required|mimes:jpeg,png',
             'category_id' => 'required',
+            'link' => 'required',
         ]);
 
         $product = new Product();
@@ -86,6 +89,7 @@ class AdminAddProductComponent extends Component
         $product->image = $imageName;
 
         $product->category_id = $this->category_id;
+        $product->link = $this->link;
         $product->save();
         session()->flash('message','Product has been created Successfully');
     }

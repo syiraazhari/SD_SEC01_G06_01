@@ -91,8 +91,8 @@
                                         @error('zipcode') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 </div>
-                                
                             </div>
+
                             <hr>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="toDiff" value="1" wire:model="shipToDifferent">
@@ -100,15 +100,13 @@
                                     Ship to a different address?
                                 </label>
                             </div>
-                            
                         </div>
                     </div>
-                </div>
-                <!-- End Billing Address -->
+                </div><!-- End Billing Method -->
 
-                <!-- Shipping Address -->
-                @if ($shipToDifferent == 1)
-                    <div class="col-12">
+                <!-- Shipping Method -->
+                <div class="col-12">
+                    @if ($shipToDifferent == 1)
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Shipping Address</h5>
@@ -189,9 +187,8 @@
                                 </div><!-- End floating Labels Form -->
                             </div>
                         </div>
-                    </div>
-                @endif
-                <!-- End Shipping Address -->
+                    @endif
+                </div><!-- End Shipping Method -->
 
                 <!-- Payment Method -->
                 <div class="col-6">
@@ -202,19 +199,20 @@
                             @if ($paymentMode == 'card')
                                 <div class="row g-3">
                                     @if (Session::has('stripe_error'))
-                                        <div class="col-6"> <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                            {{Session::get('stripe_error')}}
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <div class="col-6"> 
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                {{Session::get('stripe_error')}}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
                                         </div>
                                     @endif
-                                    <div >
+                                    <div>
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingCardNumber" placeholder="Card Number" wire:model="card_no">
                                             <label for="floatingCardNumber">Card Number</label>
                                             @error('card_no') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
-                                    
                                     <div class="col-md-4">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingExpiryMonth" placeholder="MM" wire:model="exp_month">
@@ -222,7 +220,6 @@
                                             @error('exp_month') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
-                                    
                                     <div class="col-md-4">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingExpiryYear" placeholder="YYYY" wire:model="exp_year">
@@ -243,7 +240,6 @@
                             <p>Check / Money order</p>
                             <p>Credit Cart (saved)</p>
                             <hr>
-
                             <div class="col-sm-10">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="cod" id="cod" value="cod" wire:model="paymentMode">
@@ -264,10 +260,9 @@
                                     </label>
                                 </div>
                             </div>
-                            
-
-
-                            @error('paymentMode') <span class="text-danger">{{ $message }}</span> @enderror
+                            @error('paymentMode')
+                                <span class="text-danger">{{ $message }}</span> 
+                            @enderror
                             <hr>
                             <h3 class="card-title">Grand Total <span>RM{{Session::get('checkout')['total']}}</span></h3>
                             <div class="d-grid gap-2 mt-3">
@@ -276,7 +271,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Payment Method -->
 
                 <!-- Shipping Method -->
                 <div class="col-6">
@@ -287,12 +281,9 @@
                             <p>Flat Rate</p>
                             <p>Fixed $0</p>
                             <hr>
-
                         </div>
                     </div>
-                </div>
-                <!-- End Shipping Method -->
-                
+                </div><!-- End Shipping Method -->
 
             </div>
         </form>

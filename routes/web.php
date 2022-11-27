@@ -1,21 +1,21 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Livewire\Portfolio\Tawik\ToolsComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Faq\FaqComponent;
 use App\Http\Livewire\Cart\CartComponent;
 use App\Http\Livewire\Home\HomeComponent;
 use App\Http\Livewire\Shop\ShopComponent;
+use App\Http\Livewire\About\AboutComponent;
 use App\Http\Livewire\Contact\ContactComponent;
+use App\Http\Livewire\Profile\ProfileComponent;
 use App\Http\Livewire\Checkout\CheckoutComponent;
 use App\Http\Livewire\Thankyou\ThankyouComponent;
 use App\Http\Livewire\DetailsProduct\DetailsComponent;
 use App\Http\Livewire\Admin\Coupon\AdminCouponComponent;
 use App\Http\Livewire\Admin\Slider\AdminSliderComponent;
-use App\Http\Livewire\User\Profile\UserProfileComponent;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Livewire\Admin\Product\AdminProductComponent;
-use App\Http\Livewire\Admin\Profile\AdminProfileComponent;
+use App\Http\Livewire\Admin\AdminOrder\AdminOrderComponent;
 use App\Http\Livewire\Admin\Coupon\AdminAddCouponComponent;
 use App\Http\Livewire\Admin\Slider\AdminAddSliderComponent;
 use App\Http\Livewire\Admin\Category\AdminCategoryComponent;
@@ -30,6 +30,7 @@ use App\Http\Livewire\Admin\Category\AdminEditCategoryComponent;
 use App\Http\Livewire\Admin\Homecategory\AdminHomeCategoryComponent;
 use App\Http\Livewire\Admin\Homecategory\AdminAddHomeCategoryComponent;
 use App\Http\Livewire\Admin\Homecategory\AdminEditHomeCategoryComponent;
+use App\Http\Livewire\Portfolio\Tawik\PersonalInfoComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,27 +53,25 @@ Route::get('/checkout', CheckoutComponent::class)->name('checkout');
 Route::get('/products/{slug}', DetailsComponent::class)->name('product.details');
 Route::get('/contact', ContactComponent::class)->name('contact');
 Route::get('/thankyou', ThankyouComponent::class)->name('thankyou');
+Route::get('/about', AboutComponent::class);
 
 //For User / Customer
-Route::middleware(['auth','verified'])->group(function(){
+Route::middleware(['auth:sanctum','verified'])->group(function(){
     
     //User Panel
         //For Dashboard
         Route::get('/user/dashboard', UserDashboardComponent::class)->name('user.dashboard');
 
         //For Profile 
-        Route::get('/user/profile', UserProfileComponent::class)->name('user.profile');
+        Route::get('/profile', ProfileComponent::class)->name('profile');
 });
 
 //For Admin
-Route::middleware(['auth','verified','authadmin'])->group(function(){
+Route::middleware(['auth:sanctum','verified','authadmin'])->group(function(){
     
     //Admin Panel
         //For Dashboard
         Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
-
-        //For Profile 
-        Route::get('/admin/profile', AdminProfileComponent::class)->name('admin.profile');
 
         //For Category
         Route::get('/admin/categories', AdminCategoryComponent::class)->name('admin.categories');
@@ -103,6 +102,9 @@ Route::middleware(['auth','verified','authadmin'])->group(function(){
         // Route::get('/admin/on-sale', AdminOnSaleComponent::class)->name('admin.on-sale');
         // Route::get('/admin/add-on-sale', AdminAddOnSaleComponent::class)->name('admin.add-on-sale');
         // Route::get('/admin/edit-on-sale', AdminEditOnSaleComponent::class)->name('admin.edit-on-sale');
+
+        //For AdminOrder
+        Route::get('/admin/admin-order', AdminOrderComponent::class)->name('admin.admin-order');
 
 
 });

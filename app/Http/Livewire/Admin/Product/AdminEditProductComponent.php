@@ -24,7 +24,7 @@ class AdminEditProductComponent extends Component
     public $quantity;
     public $image;
     public $category_id;
-
+    public $link;
     public $newimage;
     public $product_id;
 
@@ -64,6 +64,7 @@ class AdminEditProductComponent extends Component
             'featured' => 'required',
             'quantity' => 'required|numeric',
             'category_id' => 'required',
+            'link' => 'required',
         ]);
     }
 
@@ -80,6 +81,7 @@ class AdminEditProductComponent extends Component
             'featured' => 'required',
             'quantity' => 'required|numeric',
             'category_id' => 'required',
+            'link' => 'required',
         ]);
         $product = Product::find($this->product_id);
         $product->name = $this->name;
@@ -97,6 +99,7 @@ class AdminEditProductComponent extends Component
             $this->newimage->storeAs('products',$imageName);
             $product->image = $imageName;
         }
+        $product->link = $this->link;
         $product->category_id = $this->category_id;
         $product->save();
         session()->flash('message','Product has been updated Successfully');

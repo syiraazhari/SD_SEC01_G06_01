@@ -66,16 +66,16 @@
                                         Availability: <b>{{ $product->stock_status  }}</b>
                                     </p>
                                 </div>
-                                <div class="quantity">
+                                {{-- <div class="quantity">
                                     <span>Quantity:</span>
                                     <div class="quantity-input">
                                         <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*" >
                                         <a class="btn btn-reduce" href="#"></a>
                                         <a class="btn btn-increase" href="#"></a>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="d-grid gap-2 mt-3">
-                                    <a href="#" class="btn btn-success" wire:click.prevent="store({{$product->id}},'{{$product->name}}',{{$product->regular_price}})">Add to Cart</a>
+                                    <a href="{{ $product->link }}" class="btn btn-success">Buy Now!</a>
                                 </div>
                             </div>
 

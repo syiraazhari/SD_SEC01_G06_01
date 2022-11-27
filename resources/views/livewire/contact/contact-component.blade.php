@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-geo-alt"></i></h5>
                                 <h3>Address</h3>
-                                <p>A108 Adam Street<br>New York, NY 535022</p>
+                                <p>Platinum Splendor<br>Kuala Lumpur</p>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><i class="bi bi-envelope"></i></h5>
                                 <h3>Email Us</h3>
-                                <p>info@classact.com<br>offcltntwi@gmail.com</p>
+                                <p>admin@classact.store</p>
                             </div>
                         </div>
                     </div>

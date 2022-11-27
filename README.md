@@ -1,66 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Setup
+1. [Composer](https://getcomposer.org/download/)
+2. [NodeJS](https://nodejs.org/en/download/)
+3. [Xampp](https://www.apachefriends.org/download.html)
+4. [VSCode](https://code.visualstudio.com/Download)
 
-## About Laravel
+## Environment variables
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- `.env` - Environment variables can be set in this file
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+***Note*** : You can quickly set the database information and other variables in this file and have the application fully working.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+## Run Locally
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Clone the project
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+  git clone https://github.com/syiraazhari/SD_SEC01_G06_01.git
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Go to the project directory
 
-## Laravel Sponsors
+```bash
+  cd SD_SEC01_G06_01
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Install all the dependencies using composer
 
-### Premium Partners
+```bash
+  composer install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Copy the example env file and make the required configuration changes in the .env file
 
-## Contributing
+```bash
+  cp .env.example .env
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Generate a new application key
 
-## Code of Conduct
+```bash
+  php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Run the database migrations (Set the database connection in .env before migrating)
 
-## Security Vulnerabilities
+```bash
+  php artisan migrate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Start the local development server
 
-## License
+```bash
+  php artisan serve
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+You can now access the server at http://localhost:8000
+
+**TL;DR command list**
+
+```bash
+  git clone https://github.com/syiraazhari/SD_SEC01_G06_01.git
+  cd SD_SEC01_G06_01
+  composer install
+  cp .env.example .env
+  php artisan key:generate
+```
+
+**Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
+
+```bash
+  php artisan migrate
+  php artisan serve
+```
+
+## Database seeding
+
+**Populate the database with seed data with relationships which includes users, articles, comments, tags, favorites and follows. This can help you to quickly start testing the api or couple a frontend and start using it with ready content.**
+
+Add new CategoryFactory.php
+
+    database\factories\CategoryFactory.php
+
+Set the property values as per your requirement
+
+    $category_name = $this->faker->unique()->words($nb=2,$asText=true);
+    $slug = Str::slug($category_name);
+    return [
+      'name' => $category_name,
+      'slug' => $slug
+    ];
+Add new ProductFactory.php
+
+    database\factories\ProductFactory.php
+
+Set the property values as per your requirement
+
+    $product_name = $this->faker->unique()->words($nb=2,$asText=true);
+      $slug = Str::slug($product_name);
+        return [
+          'name' => $product_name,
+          'slug' => $slug,
+          'short_description' => $this->faker->text(200),
+          'description' => $this->faker->text(500),
+          'regular_price'=> $this->faker->numberBetween(10,500),
+          'SKU' => 'DIGI'.$this->faker->unique()->numberBetween(100,500),
+          'stock_status' => 'instock',
+          'quantity' => $this->faker->numberBetween(100,200),
+          'image' => 'digital_' . $this->faker->unique()->numberBetween(1,22).'.jpg',
+          'category_id' => $this->faker->numberBetween(1,5),
+        ];
+
+Call the factories in database seeder
+
+    database\seeders\DatabaseSeeder.php
+
+Set the property values as per your requirement
+
+    \App\Models\Category::factory(6)->create();
+    \App\Models\Product::factory(22)->create();
+
+Run the database seeder and you're done
+
+    php artisan db:seed
+
+***Note*** : It's recommended to have a clean database before seeding. You can refresh your migrations at any point to clean the database by running the following command
+
+    php artisan migrate:refresh

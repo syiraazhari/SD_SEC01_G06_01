@@ -41,7 +41,7 @@
                                             </div>
                                         </a>
                                         <div class="d-grid gap-2 mt-3">
-                                            <a href="#" class="btn btn-success" wire:click.prevent="store({{ $product->id}},'{{ $product->name }}', {{$product->regular_price}})">Add to Cart</a>
+                                            <a href="{{ $product->link }}" class="btn btn-success">Buy Now!</a>
                                         </div>
                                     </div>
                                 </div>

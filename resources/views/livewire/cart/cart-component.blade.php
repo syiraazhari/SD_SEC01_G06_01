@@ -29,10 +29,6 @@
                                         <div class="col-10">
                                             <h6 class="card-title">Product Name </h6>
                                         </div>
-                                        <div class="col-2">
-                                            <a class="btn btn-outline-danger btn-sm" style="margin-top: 20px" wire:click.prevent="destroyAll()">Clear Cart</a>
-                                        </div>
-                                        
                                     </div>
                                     
                                     <hr>
@@ -92,7 +88,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div>
-                                <h6 class="card-title">Order Summary</h6>
+                                <h6 class="card-title">Order Summary <a class="btn btn-outline-danger btn-sm" wire:click.prevent="destroyAll()">Clear Cart</a></h6>
                                 <hr>
                                 {{-- Subtotal --}}
                                 <div class="row">
