@@ -1,3 +1,11 @@
 installation folder ;
 
 https://drive.google.com/drive/folders/16Xn9qYqoofdnUrOk6z-LXHhs5yJET0DM?usp=share_link
+
+readme.txt ;
+
+https://drive.google.com/file/d/1bc5dRnlnNBQOhbNpCNhJs8aUzRNj7iJE/view?usp=sharing
+
+database dump sql ;
+
+https://drive.google.com/file/d/1WtZSMNTXBc4DOo8xBAv2JisOILCG9o-X/view?usp=sharing
